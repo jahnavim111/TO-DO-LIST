@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="/images/to-do-list.png" type="image/x-icon" />
+    <link rel="stylesheet" href="/styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Quicksand&display=swap"
+      rel="stylesheet"
+    />
+    <title>To Do List</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="heading">
+        <h2><%= locals.cd%></h2>
+      </div>
+
+      <% if(locals.data.length > 0) { %>
+      <ul class="list">
+        <% locals.data.forEach(task => { %>
+        <li class="to-do <%= task.isChecked ? 'completed' : 'none' %>">
+          <div class="item">
+            <input type="checkbox" class="check-box" <%= task.isChecked ?
+            'checked' : '' %>/> <%= task.description %>
+          </div>
+          <img class="remove" src="/images/remove.png" alt="remove" />
+        </li>
+        <% }) %>
+      </ul>
+
+      <% }else{ %>
+      <p id="quote"><%= locals.message %></p>
+      <% } %>
+      <div class="row">
+        <form id="form" action="/" method="post">
+          <input
+            id="task"
+            type="text"
+            name="task"
+            autocomplete="off"
+            placeholder="new task"
+            autofocus
+          />
+          <button id="button" type="submit">Add</button>
+        </form>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="/jQuery.js" charset="UTF-8"></script>
+  </body>
+</html>
